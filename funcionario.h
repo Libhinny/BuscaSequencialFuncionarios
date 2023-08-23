@@ -2,4 +2,10 @@
 
 /* Vai pedir para usuario inserir nome, cargo e documento */
 
-typedef struct funcionario Funcionario;
+typedef struct funcionario Funcionario{
+
+
+    Funcionario * criarFuncionario(char * nome, char * cargo, int documento);
+
+
+}

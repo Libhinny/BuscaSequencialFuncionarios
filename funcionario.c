@@ -9,7 +9,7 @@ int documento;
 
 };
 
-    Funcionario * criarfuncionario(char * nome, char * cargo, int documento, ){
+    Funcionario * criarFuncionario(char * nome, char * cargo, int documento, ){
     Funcionario * criar = (Funcionario*) malloc(sizeof(Funcionario));
     
     if (conta == NULL){
@@ -18,5 +18,6 @@ int documento;
 
 
 return criar;
+
 }
 
