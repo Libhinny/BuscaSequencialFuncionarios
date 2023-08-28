@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcionario.h"
 
 struct funcionario{
 
@@ -9,15 +10,11 @@ int documento;
 
 };
 
-    Funcionario * criarFuncionario(char * nome, char * cargo, int documento, ){
-    Funcionario * criar = (Funcionario*) malloc(sizeof(Funcionario));
-    
-    if (conta == NULL){
-    exit(1);
-}
+    Funcionario * fun_criar (char * nome , char * cargo, int documento){
+
+    }
 
 
-return criar;
+void fun_sequencial (Funcionario ** fun, int count){
 
 }
-
