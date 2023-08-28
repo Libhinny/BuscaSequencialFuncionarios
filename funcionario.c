@@ -11,7 +11,7 @@ typedef struct funcionario
 
 } Funcionario;
 
-<<<<<<< HEAD
+
 Funcionario *criarFuncionario(char *nome, char *cargo, int documento)
 {
     Funcionario *funcionario = (Funcionario *)malloc(sizeof(Funcionario));
@@ -42,14 +42,5 @@ void funcionario_salva(FILE *fp, Funcionario *funcionario)
    
 
         fprintf(fp, "Funcionario\tDocumento\tCargo\t\n%s\t%d\t%s", funcionario->nome, funcionario->documento, funcionario->cargo);
-    
-
-    Funcionario * fun_criar (char * nome , char * cargo, int documento){
-
-    }
-
-
-void fun_sequencial (Funcionario ** fun, int count){
->>>>>>> ab07710e3045a31e50a5da23d159222af2bf7b83
 
 }
