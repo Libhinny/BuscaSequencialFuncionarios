@@ -26,7 +26,7 @@ Funcionario *criarFuncionario(char *nome, char *cargo, int documento)
     funcionario->documento = documento;
 
     return funcionario;
-}
+}/
 
 void funcionario_salva(FILE *fp, Funcionario *funcionario)
 {
