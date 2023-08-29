@@ -1,8 +1,7 @@
-
 /*Biblioteca*/
 #include <stdio.h>
-
-
+#include <stdlib.h>
+#include <string.h>
 
 
 /* Struct */
@@ -24,8 +23,18 @@ utilizada para ordenar os funcionarios por ordem alfabética*/
 void funcionario_ordena (Funcionario ** fun, int count);
 
 /* Guardar os dados estruturados no arquivo*/
-void funcionario_salva (FILE *fp, Funcionario *funcionario);
+void funcionario_salva ( Funcionario *funcionario);
 
+/*Função para ler arquivos*/
+void lerarquivo(FILE *fp, Funcionario * funcionarios[], int * count_fun);
+
+/* Funçao para buscar funcionario por documento*/
+
+Funcionario buscaLineardocumento(int count_fun, Funcionario * funcionario[]);
+
+/*Função para buscar funcionario por nome*/
+
+Funcionario buscaLinearnome (int * count_fun, int fun , Funcionario * funcionario );
 
 
 

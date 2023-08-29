@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "funcionario.h"
 
 typedef struct funcionario
@@ -28,49 +26,57 @@ Funcionario *criarFuncionario(char *nome, char *cargo, int documento)
     return funcionario;
 }
 
-void funcionario_salva(FILE *fp, Funcionario *funcionario)
+void funcionario_salva( Funcionario* funcionario)
 {
 
-    // Abrir/criar o arquivo de saida para escrita (w)
-    fp = fopen("saida_q3.txt", "w");
+    // Abrir/criar o arquivo de saida para escrita (a)
+    FILE*fp = fopen("saida.txt", "a");
     if (fp == NULL)
     {
         printf("Erro ao abrir o arquivo");
         exit(1);
     }
-
    
-
-        fprintf(fp, "Funcionario\tDocumento\tCargo\t\n%s\t%d\t%s", funcionario->nome, funcionario->documento, funcionario->cargo);
-
+    fprintf(fp, "%s\t%d\t%s\n", funcionario->nome, funcionario->documento, funcionario->cargo);
+    fclose(fp);
 }
 
-/*
-int buscaLinear(int *vetor, int fun, int valor) {
+
+void lerarquivo(FILE *fp, Funcionario * funcionario[], int * count_fun){
+    char linha [100];
+    Funcionario auxiliar;
+    while(fgets (linha, 100, fp) != NULL){
+        sscanf(linha, "%s\t%d\t%s",auxiliar.nome, &auxiliar.documento, auxiliar.cargo); 
+
+        funcionario[*count_fun] = criarFuncionario (auxiliar.nome, auxiliar.cargo, auxiliar.documento);
+        (*count_fun)++;  
+     
+    }
+}
+
+ Funcionario buscaLinearnome ( int count_fun , Funcionario * funcionario, char * nome ){
+
     int i;
+
     for (i = 0; i < fun; i++) {
-        if (vetor[i] == valor) {
-            return i;
+        if (strcmp(funcionario[i].nome, nome) == 0) {
+            return funcionario[i];
         }
     }
-    return -1;
-}
+    return (-1); 
+} /**/
 
-
-void aluno_ordena(int fun, Funcionario **v)
-{
-
+Funcionario buscaLineardocumento(int count_fun, Funcionario * funcionario[], int  documento) {
+   
     int i;
-    for (i = 0; i < fun; i++)
-    {
-
-        if (v[i]->nome[0] < v[i + 1]->nome[0])
-        {
-        
+    for (i = 0; i < count_fun; i++) {
+        if (funcionario[i]->documento == documento) {
+            return funcionario[i];
         }
     }
-}
-*/
+    return (-1);
+} 
+
 void libera_funcionario (Funcionario * funcionarios){
     free (funcionarios);
 }
