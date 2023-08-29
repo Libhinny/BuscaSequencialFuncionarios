@@ -26,7 +26,7 @@ Funcionario *criarFuncionario(char *nome, char *cargo, int documento)
     funcionario->documento = documento;
 
     return funcionario;
-}/
+}
 
 void funcionario_salva(FILE *fp, Funcionario *funcionario)
 {
@@ -45,7 +45,32 @@ void funcionario_salva(FILE *fp, Funcionario *funcionario)
 
 }
 
+/*
+int buscaLinear(int *vetor, int fun, int valor) {
+    int i;
+    for (i = 0; i < fun; i++) {
+        if (vetor[i] == valor) {
+            return i;
+        }
+    }
+    return -1;
+}
 
+
+void aluno_ordena(int fun, Funcionario **v)
+{
+
+    int i;
+    for (i = 0; i < fun; i++)
+    {
+
+        if (v[i]->nome[0] < v[i + 1]->nome[0])
+        {
+        
+        }
+    }
+}
+*/
 void libera_funcionario (Funcionario * funcionarios){
     free (funcionarios);
 }
