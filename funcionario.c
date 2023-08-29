@@ -44,3 +44,8 @@ void funcionario_salva(FILE *fp, Funcionario *funcionario)
         fprintf(fp, "Funcionario\tDocumento\tCargo\t\n%s\t%d\t%s", funcionario->nome, funcionario->documento, funcionario->cargo);
 
 }
+
+
+void libera_funcionario (Funcionario * funcionarios){
+    free (funcionarios);
+}

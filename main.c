@@ -18,7 +18,19 @@ int main (void){
         printf ("Não foi possivel abrir o arquivo .\n");
         exit (-1);
     }
-    
+    do {
+        
+        printf("MENU DE OPÇÕES \n");
+        printf("1 - CADASTRO DE FUNCIONARIOS \n");
+        printf("2 - BUSCAR FUNCIONARIO CADASTRADO \n");
+        printf("3 - FINALIZAR O PROGRAMA \n");
+        printf("4 - ESCOLHA UM OPÇAO PARA PROSEGUIR: ");
+        
+        scanf("%d", &op);
+
+        return op;
+
+        
     switch (op){
         case 1: 
 
@@ -42,7 +54,15 @@ int main (void){
         break;
 
         case 2: 
-        
+
+        printf(" Buscar funcionario cadastrado \n");
+
+
+
+        if (resultado == 1){
+            printf("Funcionario não encontrado \n");
+        }
+
         break;
 
         case 3: 
@@ -55,7 +75,7 @@ int main (void){
 
         printf("Tente novamente, opcao fornecida está incorreta! \n");
 
-
+    }
     }
 }
 
