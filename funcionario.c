@@ -3,8 +3,8 @@
 typedef struct funcionario
 {
 
-    char nome[51];
-    char cargo[11];
+    char nome[100];
+    char cargo[50];
     int documento;
 
 } Funcionario;
@@ -37,7 +37,7 @@ void funcionario_salva( Funcionario* funcionario)
         exit(1);
     }
    
-    fprintf(fp, "%s\t%d\t%s\n", funcionario->nome, funcionario->documento, funcionario->cargo);
+    fprintf(fp, " %s\t%s\t%d\n", funcionario->nome, funcionario->cargo, funcionario->documento);
     fclose(fp);
 }
 
@@ -46,7 +46,7 @@ void lerarquivo(FILE *fp, Funcionario * funcionario[], int * count_fun){
     char linha [100];
     Funcionario auxiliar;
     while(fgets (linha, 100, fp) != NULL){
-        sscanf(linha, "%s\t%d\t%s",auxiliar.nome, &auxiliar.documento, auxiliar.cargo); 
+        sscanf(linha, "%s\t%s\t%d", auxiliar.nome, auxiliar.cargo, &auxiliar.documento); 
 
         funcionario[*count_fun] = criarFuncionario (auxiliar.nome, auxiliar.cargo, auxiliar.documento);
         (*count_fun)++;  
