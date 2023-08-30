@@ -2,7 +2,7 @@
 # Busca de strings com Busca Sequencial
 
 
-´´´c 
+```c 
 Funcionario *buscaLinearnome ( int count_fun , Funcionario * funcionario[], char * nome ){
 
     int i;
@@ -15,4 +15,4 @@ Funcionario *buscaLinearnome ( int count_fun , Funcionario * funcionario[], char
     return NULL; 
 } 
 
-´´´
+```
