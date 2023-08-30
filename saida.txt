@@ -1,1 +1,2 @@
-
+ Diego	Programador	3
+ Diego 	programador	5

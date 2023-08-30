@@ -77,11 +77,11 @@ int main(void)
            scanf(" %d", &documento);
             
             Funcionario * funci = buscaLineardocumento(count_fun, funcionario, documento);
-            if(func != NULL){
+            if(funci != NULL){
                 printf("\n Funcionario encontrado! \n");
-                printf("Nome: %s\n", func->nome);
-                printf("Documento: %d\n", func->documento);
-                printf("Cargo: %s\n", func->cargo);
+                printf("Nome: %s\n", funci->nome);
+                printf("Documento: %d\n", funci->documento);
+                printf("Cargo: %s\n", funci->cargo);
             }
             else{
                 printf ("Funcionario nao encontrado ! \n");
