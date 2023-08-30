@@ -1,4 +1,1 @@
-primeiro	1	a
-segundo 	2	b
-terceiro	3	c
-quarta	4	4
+
