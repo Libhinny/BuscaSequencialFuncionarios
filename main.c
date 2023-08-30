@@ -74,9 +74,9 @@ int main(void)
         case 3:
 
            printf("Digite o documento do funcionario ao qual deseja fazer uma busca \n");
-           scanf(" %d", documento);
+           scanf(" %d", &documento);
             
-            funcionario  func = buscaLineardocumento(count_fun, funcionario, documento);
+            funcionario * func = buscaLineardocumento(count_fun, funcionario, documento);
             if(func != NULL){
                 printf("/n Funcionario encontrado ! \n");
                 printf("Nome: %s\n", func->nome);
