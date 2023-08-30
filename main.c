@@ -5,7 +5,7 @@ int main(void)
 {
 
     int op, documento, count_fun = 0;
-    char nome[51], cargo[11];
+    char nome[100], cargo[50];
 
     Funcionario * funcionario [fun];
 
@@ -61,7 +61,7 @@ int main(void)
                        
           Funcionario * func = buscaLinearnome (count_fun , funcionario, nome );
           if (func != NULL){
-                printf("/n Funcionario encontrado ! \n");
+                printf("\n Funcionario encontrado! \n");
                 printf("Nome: %s\n", func->nome);
                 printf("Documento: %d\n", func->documento);
                 printf("Cargo: %s\n", func->cargo);
@@ -78,7 +78,7 @@ int main(void)
             
             Funcionario * funci = buscaLineardocumento(count_fun, funcionario, documento);
             if(func != NULL){
-                printf("/n Funcionario encontrado ! \n");
+                printf("\n Funcionario encontrado! \n");
                 printf("Nome: %s\n", func->nome);
                 printf("Documento: %d\n", func->documento);
                 printf("Cargo: %s\n", func->cargo);
