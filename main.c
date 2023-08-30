@@ -59,21 +59,38 @@ int main(void)
            printf("Digite o nome do funcionario ao qual deseja fazer uma busca \n");
            scanf(" %[^\n]", nome);
                        
-          Funcionario funcionario = buscaLinearnome (count_fun , funcionario, nome );
-            printf("nome buscado através busca por nome %p", funcionario );
+          Funcionario * func = buscaLinearnome (count_fun , funcionario, nome );
+          if (func != NULL){
+                printf("/n Funcionario encontrado ! \n");
+                printf("Nome: %s\n", func->nome);
+                printf("Documento: %d\n", func->documento);
+                printf("Cargo: %s\n", func->cargo);
+            }
+            else {
+                printf("Funcionario não encontrado! \n");
+            }
         break;
 
-        /*case 3:
+        case 3:
 
            printf("Digite o documento do funcionario ao qual deseja fazer uma busca \n");
-           scanf(" %[^\n]", documento);
-                       
-          Funcionario funcionario  = buscaLinearnome (count_fun, fun , documento, );
-            printf("nome buscado através busca por documento %p", documento );
+           scanf(" %d", documento);
+            
+            funcionario  func = buscaLineardocumento(count_fun, funcionario, documento);
+            if(func != NULL){
+                printf("/n Funcionario encontrado ! \n");
+                printf("Nome: %s\n", func->nome);
+                printf("Documento: %d\n", func->documento);
+                printf("Cargo: %s\n", func->cargo);
+            }
+            else{
+                printf ("Funcionario nao encontrado ! \n");
+            }
+            
             
 
             break;
-*/
+
             case 4:
 
             printf("Finalizar programa");

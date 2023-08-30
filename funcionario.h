@@ -30,11 +30,11 @@ void lerarquivo(FILE *fp, Funcionario * funcionarios[], int * count_fun);
 
 /* Funçao para buscar funcionario por documento*/
 
-Funcionario buscaLineardocumento(int count_fun, Funcionario * funcionario[]);
+Funcionario *buscaLineardocumento(int count_fun, Funcionario * funcionario[], int documento);
 
 /*Função para buscar funcionario por nome*/
 
-Funcionario buscaLinearnome (int * count_fun, int fun , Funcionario * funcionario );
+Funcionario *buscaLinearnome (int  count_fun, Funcionario * funcionario[], char * nome );
 
 
 

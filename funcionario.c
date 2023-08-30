@@ -54,19 +54,19 @@ void lerarquivo(FILE *fp, Funcionario * funcionario[], int * count_fun){
     }
 }
 
- Funcionario buscaLinearnome ( int count_fun , Funcionario * funcionario, char * nome ){
+ Funcionario *buscaLinearnome ( int count_fun , Funcionario * funcionario[], char * nome ){
 
     int i;
 
-    for (i = 0; i < fun; i++) {
-        if (strcmp(funcionario[i].nome, nome) == 0) {
+    for (i = 0; i < count_fun; i++) {
+        if (strcmp(funcionario[i]->nome, nome) == 0) {
             return funcionario[i];
         }
     }
-    return (-1); 
-} /**/
+    return NULL; 
+} 
 
-Funcionario buscaLineardocumento(int count_fun, Funcionario * funcionario[], int  documento) {
+Funcionario *buscaLineardocumento(int count_fun, Funcionario * funcionario[], int  documento) {
    
     int i;
     for (i = 0; i < count_fun; i++) {
@@ -74,7 +74,7 @@ Funcionario buscaLineardocumento(int count_fun, Funcionario * funcionario[], int
             return funcionario[i];
         }
     }
-    return (-1);
+    return NULL;
 } 
 
 void libera_funcionario (Funcionario * funcionarios){
