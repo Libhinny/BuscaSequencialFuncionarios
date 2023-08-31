@@ -8,6 +8,8 @@ int main(void)
     tempo = tempo * 1000; // milisegundos
 
     int op, documento, count_fun = 0;
+    int nomeValido = 0;
+
     char nome[100], cargo[50];
 
     Funcionario *funcionario[fun];
@@ -37,12 +39,12 @@ int main(void)
         {
         case 1:
             // Verifica se o nome contém apenas letras
-            int nomeValido = 0;
-            
+
             while (!nomeValido)
             {
                 printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
                 scanf(" %[^\n]", nome);
+                getchar(); // Limpar o buffer
 
                 nomeValido = 1;
                 for (int i = 0; nome[i] != '\0'; i++)
@@ -56,22 +58,21 @@ int main(void)
 
                 if (!nomeValido)
                 {
-                    printf("O nome digitado contém caracteres inválidos. Digite novamente:\n");
+                    printf("O nome digitado contém caracteres inválidos.\n");
                 }
             }
-
-           
-             // Verifica se o cargo contém apenas letras
+            // Verifica se o cargo contém apenas letras
             int cargoValido = 0;
             while (!cargoValido)
             {
-                 printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
-            scanf(" %[^\n]", cargo);
+                printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
+                scanf(" %[^\n]", cargo);
+                getchar(); // Limpar o buffer
 
-               cargoValido = 1;
-                for (int i = 0;  cargo[i] != '\0'; i++)
+                cargoValido = 1;
+                for (int i = 0; cargo[i] != '\0'; i++)
                 {
-                    if (!isalpha( cargo[i]) && !isspace( cargo[i]))
+                    if (!isalpha(cargo[i]) && !isspace(cargo[i]))
                     {
                         cargoValido = 0;
                         break;
@@ -83,10 +84,22 @@ int main(void)
                     printf("O cargo digitado contém caracteres inválidos. Digite novamente:\n");
                 }
             }
-
-            printf("Digite o N° de um documento de identificação: \n");
-            scanf(" %d", &documento);
-
+             int documentoValido = 0;
+            while (!documentoValido)
+            {
+                printf("Digite o número de um documento de identificação: \n");
+                if (scanf(" %d", &documento) == 1)
+                {
+                    documentoValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n')
+                        ;
+                }
+            }
             if (count_fun < fun)
 
             {
@@ -107,6 +120,7 @@ int main(void)
             {
                 printf("Digite o nome do funcionario ao qual deseja fazer uma busca:\n");
                 scanf(" %[^\n]", nome);
+                getchar();
 
                 nomeValido = 1;
                 for (int i = 0; nome[i] != '\0'; i++)
@@ -114,13 +128,14 @@ int main(void)
                     if (!isalpha(nome[i]) && !isspace(nome[i]))
                     {
                         nomeValido = 0;
+                        getchar(); // Limpar o buffer
                         break;
                     }
                 }
 
                 if (!nomeValido)
                 {
-                    printf("Nome contém caracteres inválidos. Digite novamente:\n");
+                    printf("Nome contém caracteres inválidos.\n");
                 }
             }
 
@@ -139,9 +154,22 @@ int main(void)
             break;
 
         case 3:
-
-            printf("Digite o documento do funcionario ao qual deseja fazer uma busca \n");
-            scanf(" %d", &documento);
+           
+            while (!documentoValido)
+            {
+                printf("Digite o número de um documento de identificação: \n");
+                if (scanf(" %d", &documento) == 1)
+                {
+                    documentoValido = 1;
+                }
+                else
+                {
+                    printf("Entrada inválida. Digite novamente:\n");
+                    // Limpar o buffer de entrada para evitar loop infinito
+                    while (getchar() != '\n')
+                        ;
+                }
+            }
 
             Funcionario *funci = buscaLineardocumento(count_fun, funcionario, documento);
             if (funci != NULL)
