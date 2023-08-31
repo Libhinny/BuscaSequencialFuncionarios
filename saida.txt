@@ -1,0 +1,4 @@
+
+ Diego Nascimento	operador	1
+ Paulo Henrique	Gerente	2
+ Diego Nascimento 	gerente	3

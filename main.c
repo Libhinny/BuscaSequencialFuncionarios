@@ -3,11 +3,14 @@
 
 int main(void)
 {
+    clock_t inicio = clock();
+    double tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
+    tempo = tempo * 1000; // milisegundos
 
     int op, documento, count_fun = 0;
     char nome[100], cargo[50];
 
-    Funcionario * funcionario [fun];
+    Funcionario *funcionario[fun];
     printf("\nBem vindo ao nosso Programa!\n");
     printf("O presente programa manipula um tipo estruturado Funcionarios e possui a funcionalidade de buscar funcionarios de um arquivo por nome ou documento.\n");
     printf("AUTORES:\nDiego Nascimento de Oliveira\nPaulo Henrique Medeiros da Silva\n\n");
@@ -17,15 +20,15 @@ int main(void)
         printf("Não foi possivel abrir o arquivo .\n");
         exit(-1);
     }
-        lerarquivo(dados_fun,  funcionario,  &count_fun);
+    lerarquivo(dados_fun, funcionario, &count_fun);
 
     do
     {
 
-        printf("MENU DE OPÇÕES \n");
+        printf("\nMENU DE OPÇÕES \n");
         printf("1 - CADASTRO DE FUNCIONARIOS \n");
-        printf("2 - BUSCAR FUNCIONARIO POR NOME: \n");
-        printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO:  \n");
+        printf("2 - BUSCAR FUNCIONARIO POR NOME \n");
+        printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO  \n");
         printf("4 - FINALIZAR O PROGRAMA \n");
 
         scanf("%d", &op);
@@ -44,10 +47,10 @@ int main(void)
             scanf(" %d", &documento);
 
             if (count_fun < fun)
-            
+
             {
                 funcionario[count_fun] = criarFuncionario(nome, cargo, documento);
-                funcionario_salva (funcionario[count_fun]);
+                funcionario_salva(funcionario[count_fun]);
                 count_fun++;
             }
             else
@@ -58,44 +61,46 @@ int main(void)
 
         case 2:
 
-           printf("Digite o nome do funcionario ao qual deseja fazer uma busca \n");
-           scanf(" %[^\n]", nome);
-                       
-          Funcionario * func = buscaLinearnome (count_fun , funcionario, nome );
-          if (func != NULL){
+            printf("Digite o nome do funcionario ao qual deseja fazer uma busca \n");
+            scanf(" %[^\n]", nome);
+
+            Funcionario *func = buscaLinearnome(count_fun, funcionario, nome);
+            if (func != NULL)
+            {
                 printf("\n\tFuncionario encontrado \n");
                 printf("Nome: %s\n", func->nome);
                 printf("Documento: %d\n", func->documento);
                 printf("Cargo: %s\n", func->cargo);
             }
-            else {
+            else
+            {
                 printf("Funcionario não encontrado! \n");
             }
-        break;
+            break;
 
         case 3:
 
-           printf("Digite o documento do funcionario ao qual deseja fazer uma busca \n");
-           scanf(" %d", &documento);
-            
-            Funcionario * funci = buscaLineardocumento(count_fun, funcionario, documento);
-            if(funci != NULL){
+            printf("Digite o documento do funcionario ao qual deseja fazer uma busca \n");
+            scanf(" %d", &documento);
+
+            Funcionario *funci = buscaLineardocumento(count_fun, funcionario, documento);
+            if (funci != NULL)
+            {
                 printf("\n Funcionario encontrado! \n");
                 printf("Nome: %s\n", funci->nome);
                 printf("Documento: %d\n", funci->documento);
                 printf("Cargo: %s\n", funci->cargo);
             }
-            else{
-                printf ("Funcionario nao encontrado! \n");
+            else
+            {
+                printf("Funcionario nao encontrado! \n");
             }
-            
-            
 
             break;
 
-            case 4:
+        case 4:
 
-            printf("Finalizar programa");
+            printf("Programa finalizado! Obrigado por usar nosso programa.\n");
 
             break;
 
@@ -103,6 +108,9 @@ int main(void)
 
             printf("Tente novamente, opcao fornecida está incorreta! \n");
         }
-    } while (op !=4);
+    } while (op != 4);
+
+    printf("\nTempo de execucao: %.50f\n\n", tempo);
+
     return 0;
 }
