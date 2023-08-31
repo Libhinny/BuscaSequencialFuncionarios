@@ -1,4 +1,2 @@
-
- Diego Nascimento	operador	1
- Paulo Henrique	Gerente	2
- Diego Nascimento 	gerente	3
+ 1diego	4	3
+ Diego	Vendedor	18

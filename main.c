@@ -36,12 +36,53 @@ int main(void)
         switch (op)
         {
         case 1:
+            // Verifica se o nome contém apenas letras
+            int nomeValido = 0;
+            
+            while (!nomeValido)
+            {
+                printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
+                scanf(" %[^\n]", nome);
 
-            printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
-            scanf(" %[^\n]", nome);
+                nomeValido = 1;
+                for (int i = 0; nome[i] != '\0'; i++)
+                {
+                    if (!isalpha(nome[i]) && !isspace(nome[i]))
+                    {
+                        nomeValido = 0;
+                        break;
+                    }
+                }
 
-            printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
+                if (!nomeValido)
+                {
+                    printf("O nome digitado contém caracteres inválidos. Digite novamente:\n");
+                }
+            }
+
+           
+             // Verifica se o cargo contém apenas letras
+            int cargoValido = 0;
+            while (!cargoValido)
+            {
+                 printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
             scanf(" %[^\n]", cargo);
+
+               cargoValido = 1;
+                for (int i = 0;  cargo[i] != '\0'; i++)
+                {
+                    if (!isalpha( cargo[i]) && !isspace( cargo[i]))
+                    {
+                        cargoValido = 0;
+                        break;
+                    }
+                }
+
+                if (!cargoValido)
+                {
+                    printf("O cargo digitado contém caracteres inválidos. Digite novamente:\n");
+                }
+            }
 
             printf("Digite o N° de um documento de identificação: \n");
             scanf(" %d", &documento);
@@ -60,9 +101,28 @@ int main(void)
             break;
 
         case 2:
+            // Verifica se o nome contém apenas letras
+            nomeValido = 0;
+            while (!nomeValido)
+            {
+                printf("Digite o nome do funcionario ao qual deseja fazer uma busca:\n");
+                scanf(" %[^\n]", nome);
 
-            printf("Digite o nome do funcionario ao qual deseja fazer uma busca \n");
-            scanf(" %[^\n]", nome);
+                nomeValido = 1;
+                for (int i = 0; nome[i] != '\0'; i++)
+                {
+                    if (!isalpha(nome[i]) && !isspace(nome[i]))
+                    {
+                        nomeValido = 0;
+                        break;
+                    }
+                }
+
+                if (!nomeValido)
+                {
+                    printf("Nome contém caracteres inválidos. Digite novamente:\n");
+                }
+            }
 
             Funcionario *func = buscaLinearnome(count_fun, funcionario, nome);
             if (func != NULL)
