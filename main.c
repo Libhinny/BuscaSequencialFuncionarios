@@ -8,7 +8,9 @@ int main(void)
     char nome[100], cargo[50];
 
     Funcionario * funcionario [fun];
-
+    printf("\nBem vindo ao nosso Programa!\n");
+    printf("O presente programa manipula um tipo estruturado Funcionarios e possui a funcionalidade de buscar funcionarios de um arquivo por nome ou documento.\n");
+    printf("AUTORES:\nDiego Nascimento de Oliveira\nPaulo Henrique Medeiros da Silva\n\n");
     FILE *dados_fun = fopen("saida.txt", "r");
     if (dados_fun == NULL)
     {
@@ -35,7 +37,7 @@ int main(void)
             printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
             scanf(" %[^\n]", nome);
 
-            printf("Diite o cargo do funcionario ao qual deseja cadastrar: \n");
+            printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
             scanf(" %[^\n]", cargo);
 
             printf("Digite o N° de um documento de identificação: \n");
@@ -61,7 +63,7 @@ int main(void)
                        
           Funcionario * func = buscaLinearnome (count_fun , funcionario, nome );
           if (func != NULL){
-                printf("\n Funcionario encontrado! \n");
+                printf("\n\tFuncionario encontrado \n");
                 printf("Nome: %s\n", func->nome);
                 printf("Documento: %d\n", func->documento);
                 printf("Cargo: %s\n", func->cargo);
@@ -84,7 +86,7 @@ int main(void)
                 printf("Cargo: %s\n", funci->cargo);
             }
             else{
-                printf ("Funcionario nao encontrado ! \n");
+                printf ("Funcionario nao encontrado! \n");
             }
             
             
