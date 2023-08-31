@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    // função 
     clock_t inicio = clock();
     double tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
     tempo = tempo * 1000; // milisegundos
