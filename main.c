@@ -3,10 +3,6 @@
 
 int main(void)
 {
-    // função 
-    clock_t inicio = clock();
-    double tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
-    tempo = tempo * 1000; // milisegundos
 
     int op, documento, count_fun = 0;
     int nomeValido = 0;
@@ -34,14 +30,22 @@ int main(void)
         printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO  \n");
         printf("4 - FINALIZAR O PROGRAMA \n");
 
-        scanf("%d", &op);
+       if (scanf("%d", &op) != 1)
+    {
+        printf("Entrada inválida. Digite um número.\n");
+        while (getchar() != '\n')
+        {
+            // Limpar o buffer de entrada para evitar loop infinito
+        }
+        continue; // Volta para o início do loop
+    }
 
         switch (op)
         {
         case 1:
             // Verifica se o nome contém apenas letras
 
-            while (!nomeValido)
+           do
             {
                 printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
                 scanf(" %[^\n]", nome);
@@ -61,10 +65,11 @@ int main(void)
                 {
                     printf("O nome digitado contém caracteres inválidos.\n");
                 }
-            }
+            } while (!nomeValido);
+
             // Verifica se o cargo contém apenas letras
             int cargoValido = 0;
-            while (!cargoValido)
+            do
             {
                 printf("Digite o cargo do funcionario ao qual deseja cadastrar: \n");
                 scanf(" %[^\n]", cargo);
@@ -84,9 +89,10 @@ int main(void)
                 {
                     printf("O cargo digitado contém caracteres inválidos. Digite novamente:\n");
                 }
-            }
+            }while (!cargoValido);
+
              int documentoValido = 0;
-            while (!documentoValido)
+           do
             {
                 printf("Digite o número de um documento de identificação: \n");
                 if (scanf(" %d", &documento) == 1)
@@ -100,7 +106,8 @@ int main(void)
                     while (getchar() != '\n')
                         ;
                 }
-            }
+            } while (!documentoValido);
+
             if (count_fun < fun)
 
             {
@@ -117,7 +124,7 @@ int main(void)
         case 2:
             // Verifica se o nome contém apenas letras
             nomeValido = 0;
-            while (!nomeValido)
+            do
             {
                 printf("Digite o nome do funcionario ao qual deseja fazer uma busca:\n");
                 scanf(" %[^\n]", nome);
@@ -138,7 +145,7 @@ int main(void)
                 {
                     printf("Nome contém caracteres inválidos.\n");
                 }
-            }
+            }while (!nomeValido);
 
             Funcionario *func = buscaLinearnome(count_fun, funcionario, nome);
             if (func != NULL)
@@ -156,7 +163,7 @@ int main(void)
 
         case 3:
            
-            while (!documentoValido)
+           do
             {
                 printf("Digite o número de um documento de identificação: \n");
                 if (scanf(" %d", &documento) == 1)
@@ -170,7 +177,7 @@ int main(void)
                     while (getchar() != '\n')
                         ;
                 }
-            }
+            } while (!documentoValido);
 
             Funcionario *funci = buscaLineardocumento(count_fun, funcionario, documento);
             if (funci != NULL)
@@ -199,7 +206,7 @@ int main(void)
         }
     } while (op != 4);
 
-    printf("\nTempo de execucao: %.50f\n\n", tempo);
+   
 
     return 0;
 }
