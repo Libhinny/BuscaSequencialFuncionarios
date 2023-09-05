@@ -69,7 +69,5 @@ $$ T(n) =  (n-1) $$
 $$ T(n) =  O(n) $$
 
 
-### Exemplo de complexidade de espaço: 
 
-A complexidade de espaço de um algoritmo é denotada por S(n), em que n é o tamanho da entrada. A complexidade de espaço de um algoritmo é a quantidade de memória que o algoritmo consome para executar uma tarefa com uma entrada de tamanho n.
 
