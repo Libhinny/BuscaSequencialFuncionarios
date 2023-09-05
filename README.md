@@ -1,7 +1,6 @@
 
 # Busca de strings com Busca Sequencial: 
-
-### Implemente um algoritmo que manipula um tipo estruturado Funcionários e possui a funcionalidade de buscar os funcionarios em um arquivo. 
+ 
 
 A Busca Sequencial é um método simples de procurar por uma determinada string em uma coleção, como um vetor ou uma lista, em linguagens de programação como C. Ela envolve percorrer cada elemento da coleção, um por um, até encontrar a string desejada ou até percorrer todos os elementos.
   
