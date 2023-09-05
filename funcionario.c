@@ -11,11 +11,11 @@ typedef struct funcionario
 } Funcionario;
 
 // Função para criar os funcionarios, em seguida serão alocados dinamicamente e estaram armazendo os dados na struct.
-Funcionario *criarFuncionario(char *nome, char *cargo,  long long int documento)
+Funcionario *criarFuncionario(char *nome, char *cargo, long long int documento)
 {
     Funcionario *funcionario = (Funcionario *)malloc(sizeof(Funcionario));
 
-    if (funcionario == NULL) // Retorna NULL se a alocação de memória falhar
+    if (funcionario == NULL) // verifica se a alocação de memória foi bem sucedida ou não
     {
         exit(1); // encerrar
     }
@@ -61,41 +61,78 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
 Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *nome)
 {
 
-    // função para calcular o tempo de execução da função buscaLinearnome
+    /// inicia o tempo de execução da função buscaLinearnome
     clock_t inicio = clock();
-    double tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
-    tempo = tempo * 1000; // milisegundos
+    double tempo;
 
     int i;
     for (i = 0; i < count_fun; i++)
     {
         if (strcmp(funcionario[i]->nome, nome) == 0)
-        {
+        {   
+            // Calcula o tempo de execução caso um funcionario seja encontrado
+            clock_t fim = clock();
+            tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // milisegundos
             printf("\nTempo de execucao da funcao buscaLinearnome : %.50f\n\n", tempo);
             return funcionario[i]; // retorna a funcionario
         }
     }
 
+    // Calcula o tempo de execução caso nenhum funcionario seja encontrado
+    clock_t fim = clock();
+    tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    tempo = tempo * 1000; // milisegundos
+    printf("\nTempo de execucao da funcao buscaLinearnome : %.50f\n\n", tempo);
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
+
 // função para busca dos funcionarios cadastrado por numero de indentificação (pode ser ele identidade, cpf ou matricula)
-Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[],   long long int documento)
+Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], long long int documento)
 {
-    // função para calcular o tempo de execução da função buscaLinearnome
+    // inicia o tempo de execução da função buscaLineardocumento
     clock_t inicio = clock();
-    double tempo = (double)(clock() - inicio) / CLOCKS_PER_SEC;
-    tempo = tempo * 1000; // milisegundos
+    double tempo;
     int i;
     for (i = 0; i < count_fun; i++)
     {
         if (funcionario[i]->documento == documento)
         {
+            // Calcula o tempo de execução caso um funcionario seja encontrado
+            clock_t fim = clock();
+            tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+            tempo = tempo * 1000; // milisegundos
             printf("\nTempo de execucao da funcao buscaLineardocumento : %.50f\n\n", tempo);
             return funcionario[i]; // Retorna a funcionario
         }
     }
+    // Calcula o tempo de execução caso nenhum funcionario seja encontrado
+    clock_t fim = clock();
+    tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    tempo = tempo * 1000; // milisegundos
+    printf("\nTempo de execucao da funcao buscaLineardocumento : %.50f\n\n", tempo);
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
+
+// Função para atualizar o arquivo arquivo "saida.txt" sempre que o programa e encerrado e inicializado novamente.
+void atualizarArquivo(Funcionario *funcionario[], int count_fun)
+{
+    FILE *fp = fopen("saida.txt", "w"); // Abre o arquivo para escrita, substituindo o conteúdo existente
+
+    if (fp == NULL)
+    {
+        printf("Erro ao abrir o arquivo para atualização.\n");
+        exit(1); // Trate o erro adequadamente
+    }
+
+    for (int i = 0; i < count_fun; i++)
+    {
+        fprintf(fp, "%s\t%s\t%lld\n", funcionario[i]->nome, funcionario[i]->cargo, funcionario[i]->documento);
+    }
+
+    fclose(fp); // Feche o arquivo após a atualização
+}
+
 // função libera funcionario vai liberar a memoria ocupada
 void libera_funcionario(Funcionario *funcionarios)
 {

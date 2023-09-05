@@ -1,5 +1,5 @@
 #include "funcionario.c"
-#define fun 10
+#define TAMANHO_INICIAL 10
 
 int main(void)
 {
@@ -9,18 +9,28 @@ int main(void)
     int nomeValido = 0;
 
     char nome[100], cargo[50];
+    int tamanho_atual = TAMANHO_INICIAL; // Variável para rastrear o tamanho atual do array de funcionários
 
-    Funcionario *funcionario[fun];
+
+    // Aloca memória inicial para o array de ponteiros de funcionários
+    Funcionario **funcionario = malloc(sizeof(Funcionario *) * TAMANHO_INICIAL);
+    if (funcionario == NULL) // verifica se a alocação de memória foi bem sucedida ou não
+    {
+        exit(1); // // encerrar
+    }
+
     printf("\nBem vindo ao nosso Programa!\n");
     printf("O presente programa manipula um tipo estruturado Funcionarios e possui a funcionalidade de buscar funcionarios de um arquivo por nome ou documento.\n");
     printf("AUTORES:\nDiego Nascimento de Oliveira\nPaulo Henrique Medeiros da Silva\n\n");
-    FILE *dados_fun = fopen("saida.txt", "r");
+
+    count_fun = 0;                             // número de funcionários lidos do arquivo
+    FILE *dados_fun = fopen("saida.txt", "r"); // abre o arquivo "saida.txt" no modo de leitura ("r"), permitindo ler todos os dados do arquivo.
     if (dados_fun == NULL)
     {
-        printf("Não foi possivel abrir o arquivo .\n");
+        printf("Não foi possível abrir o arquivo.\n");
         exit(-1);
     }
-    lerarquivo(dados_fun, funcionario, &count_fun);
+    lerarquivo(dados_fun, funcionario, &count_fun); // chama a função lerarquivo para ler os dados do arquivo "saida.txt" e carregá-los na memória.
 
     do
     {
@@ -31,22 +41,22 @@ int main(void)
         printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO  \n");
         printf("4 - FINALIZAR O PROGRAMA \n");
 
-       if (scanf("%d", &op) != 1)
-    {
-        printf("Entrada inválida. Digite um número.\n");
-        while (getchar() != '\n')
+        if (scanf("%d", &op) != 1)
         {
-            // Limpar o buffer de entrada para evitar loop infinito
+            printf("Entrada inválida. Digite um número.\n");
+            while (getchar() != '\n')
+            {
+                // Limpar o buffer de entrada para evitar loop infinito
+            }
+            continue; // Volta para o início do loop
         }
-        continue; // Volta para o início do loop
-    }
 
         switch (op)
         {
         case 1:
             // Verifica se o nome contém apenas letras
 
-           do
+            do
             {
                 printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
                 scanf(" %[^\n]", nome);
@@ -90,10 +100,10 @@ int main(void)
                 {
                     printf("O cargo digitado contém caracteres inválidos. Digite novamente:\n");
                 }
-            }while (!cargoValido);
+            } while (!cargoValido);
 
-             int documentoValido = 0;
-           do
+            int documentoValido = 0;
+            do
             {
                 printf("Digite o número de um documento de identificação: \n");
                 if (scanf(" %lld", &documento) == 1)
@@ -109,17 +119,23 @@ int main(void)
                 }
             } while (!documentoValido);
 
-            if (count_fun < fun)
+            if (count_fun >= tamanho_atual)
+            {
+                // Se o array está cheio, realoque memória para um novo array com tamanho maior
+                tamanho_atual *= 2;
+                funcionario = realloc(funcionario, sizeof(Funcionario *) * tamanho_atual);
 
-            {
-                funcionario[count_fun] = criarFuncionario(nome, cargo, documento);
-                funcionario_salva(funcionario[count_fun]);
-                count_fun++;
+                if (funcionario == NULL)
+                {
+                    exit(1); // Tratar erro de realocação de memória
+                }
+
             }
-            else
-            {
-                printf("Quantidade maxima de funcionario foi atingido! ");
-            }
+
+            funcionario[count_fun] = criarFuncionario(nome, cargo, documento);
+            funcionario_salva(funcionario[count_fun]);
+            count_fun++;
+
             break;
 
         case 2:
@@ -146,7 +162,7 @@ int main(void)
                 {
                     printf("Nome contém caracteres inválidos.\n");
                 }
-            }while (!nomeValido);
+            } while (!nomeValido);
 
             Funcionario *func = buscaLinearnome(count_fun, funcionario, nome);
             if (func != NULL)
@@ -163,8 +179,8 @@ int main(void)
             break;
 
         case 3:
-           
-           do
+
+            do
             {
                 printf("Digite o número de um documento de identificação: \n");
                 if (scanf(" %lld", &documento) == 1)
@@ -205,9 +221,18 @@ int main(void)
 
             printf("Tente novamente, opcao fornecida está incorreta! \n");
         }
+
+        atualizarArquivo(funcionario, count_fun); // Atualiza o arquivo sempre que houver alterações na lista de funcionários
     } while (op != 4);
 
-   
+    // Libera a memória alocada para cada funcionário individualmente antes de liberar o array de ponteiros de funcionários
+    for (int i = 0; i < count_fun; i++)
+    {
+        libera_funcionario(funcionario[i]);
+    }
+
+    // Libera a memória alocada para o array de ponteiros de funcionários
+    free(funcionario);
 
     return 0;
 }

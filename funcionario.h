@@ -11,19 +11,8 @@
 typedef struct funcionario Funcionario;
 
 
-/*Função funcionario
-Cadastra um novo arquivo funcionario, alocando memoria*/
-
+/*Função para cadastra um novo arquivo funcionario, alocando memoria*/
 Funcionario * criarFuncionario (char * nome, char * cargo,   long long int documento);
-
-/* FUnçao para liberar memoria alocada*/
-
-void funcionario_libera (Funcionario ** fun, FILE * fp);
-
-/* Função ordena 
-utilizada para ordenar os funcionarios por ordem alfabética*/
-
-void funcionario_ordena (Funcionario ** fun, int count);
 
 /* Guardar os dados estruturados no arquivo*/
 void funcionario_salva ( Funcionario *funcionario);
@@ -32,12 +21,15 @@ void funcionario_salva ( Funcionario *funcionario);
 void lerarquivo(FILE *fp, Funcionario * funcionarios[], int * count_fun);
 
 /* Funçao para buscar funcionario por documento*/
-
 Funcionario *buscaLineardocumento(int count_fun, Funcionario * funcionario[],   long long int documento);
 
 /*Função para buscar funcionario por nome*/
-
 Funcionario *buscaLinearnome (int  count_fun, Funcionario * funcionario[], char * nome );
 
+/*Função para atualizar o arquivo "saida.txt"*/
+void atualizarArquivo(Funcionario *funcionario[], int count_fun);
+
+/* FUnçao para liberar memoria alocada*/
+void funcionario_libera (Funcionario ** fun, FILE * fp);
 
 
