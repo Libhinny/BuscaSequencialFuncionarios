@@ -57,12 +57,12 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
     Funcionario auxiliar; // variavel auxilar
                           
                           
-    while (fgets(linha, sizeof(linha), fp) != NULL)// fgets é utilizado para fazer a leitura de uma linha e depois armazenar em uma string
+    while (fgets(linha, sizeof(linha), fp) != NULL)// verifica se a linha esta vazia ou não
     {
         char nome[100], cargo[50];
         long long int documento;
 
-        // Use sscanf para ler nome e cargo com espaços e o documento com strtol
+        
         if (sscanf(linha, "%99[^\t]\t%49[^\t]\t%lld", nome, cargo, &documento) == 3)//Apenas para verificar e aprovar como deve ser o formato da linha que vai ser lida no arquivo
         {
             funcionario[*count_fun] = criarFuncionario(nome, cargo, documento); // se aprovado um novo funcionário é criado e armazenado no array funcionario.
