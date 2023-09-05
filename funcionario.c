@@ -80,7 +80,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
     int i;
     for (i = 0; i < count_fun; i++)
     {
-        if (strcmp(funcionario[i]->nome, nome) == 0)
+       if (strcasecmp(funcionario[i]->nome, nome) == 0)// Usando strcasecmp para comparar insensível a maiúsculas e minúsculas
         {
             // Calcula o tempo de execução caso um funcionario seja encontrado
             clock_t fim = clock();
