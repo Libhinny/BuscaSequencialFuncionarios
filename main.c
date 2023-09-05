@@ -36,7 +36,7 @@ int main(void)
     {
 
         printf("\nMENU DE OPÇÕES \n");
-        printf("1 - CADASTRO DE FUNCIONARIOS \n");
+        printf("1 - CADASTRAR FUNCIONARIO \n");
         printf("2 - BUSCAR FUNCIONARIO POR NOME \n");
         printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO  \n");
         printf("4 - FINALIZAR O PROGRAMA \n");
