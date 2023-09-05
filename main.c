@@ -5,7 +5,7 @@ int main(void)
 {
 
     int op, count_fun = 0;
-    long long int documento; // Para armazenar um número maior de inteiros e os zeros a esquerda sajam mostrados na saida.
+    long long int documento; // Para armazenar um número maior de inteiros 
     int nomeValido = 0;
 
     char nome[100], cargo[50];
@@ -41,7 +41,7 @@ int main(void)
         printf("3 - BUSCAR FUNCIONARIO POR DOCUMENTO  \n");
         printf("4 - FINALIZAR O PROGRAMA \n");
 
-        if (scanf("%d", &op) != 1)
+        if (scanf("%d", &op) != 1) // verifica se o que foi digitado é um inteiro
         {
             printf("Entrada inválida. Digite um número.\n");
             while (getchar() != '\n')
@@ -55,7 +55,6 @@ int main(void)
         {
         case 1:
             // Verifica se o nome contém apenas letras
-
             do
             {
                 printf("Digite o nome do funcionario ao qual deseja cadastrar: \n");
@@ -65,9 +64,10 @@ int main(void)
                 nomeValido = 1;
                 for (int i = 0; nome[i] != '\0'; i++)
                 {
-                    if (!isalpha(nome[i]) && !isspace(nome[i]))
+                    if (!isalpha(nome[i]) && !isspace(nome[i]))// A função isalpha retorna verdadeiro se o caractere for uma letra do alfabeto e falso caso contrário, enquanto isspace retorna verdadeiro se o caractere for um espaço em branco.
+
                     {
-                        nomeValido = 0;
+                        nomeValido = 0; //significa que o nome digitado é válido
                         break;
                     }
                 }
@@ -119,6 +119,7 @@ int main(void)
                 }
             } while (!documentoValido);
 
+            // para realocar a memória
             if (count_fun >= tamanho_atual)
             {
                 // Se o array está cheio, realoque memória para um novo array com tamanho maior
@@ -164,6 +165,7 @@ int main(void)
                 }
             } while (!nomeValido);
 
+            //Após verificar se o que foi digitado é valido é feito a busca
             Funcionario *func = buscaLinearnome(count_fun, funcionario, nome);
             if (func != NULL)
             {
@@ -196,6 +198,7 @@ int main(void)
                 }
             } while (!documentoValido);
 
+            //Após verificar se o que foi digitado é valido é feito a busca
             Funcionario *funci = buscaLineardocumento(count_fun, funcionario, documento);
             if (funci != NULL)
             {

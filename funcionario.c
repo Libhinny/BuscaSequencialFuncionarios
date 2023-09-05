@@ -10,35 +10,36 @@ typedef struct funcionario
 
 } Funcionario;
 
-// Função para criar os funcionarios, em seguida serão alocados dinamicamente e estaram armazendo os dados na struct.
+/*Função para cadastra um novo arquivo funcionario, alocando memoria e armazenando os dados da struct*/
 Funcionario *criarFuncionario(char *nome, char *cargo, long long int documento)
 {
     Funcionario *funcionario = (Funcionario *)malloc(sizeof(Funcionario));
 
     if (funcionario == NULL) // verifica se a alocação de memória foi bem sucedida ou não
     {
-        exit(1); // encerrar
+        exit(1); // encerra
     }
 
-    strcpy(funcionario->nome, nome);    // string
-    strcpy(funcionario->cargo, cargo);  // string
-    funcionario->documento = documento; // recebe o parametro documentro da struct
+    strcpy(funcionario->nome, nome);    // Recebe os dados da variavel nome e copia para o campo nome da struct
+    strcpy(funcionario->cargo, cargo);  // Recebe os dados da variavel cargo e copia para o campo cargo da struct
+    funcionario->documento = documento; // recebe o parametro a variavel documento e armazena no campo documento da struct
 
-    return funcionario; // retorna para funcionario
+    return funcionario; // retorna os dados do funcionario que estão armazenados
 }
+
 // função de salvar arquivo
 void funcionario_salva(Funcionario *funcionario)
 {
 
-    // Abrir/criar o arquivo de saida para escrita (a)
-    FILE *fp = fopen("saida.txt", "a"); // abrir arquivo "a" (abre um arquivo no modo de inclusão)
-    if (fp == NULL)                     // Retorna NULL se a alocação de memória falhar
+    
+    FILE *fp = fopen("saida.txt", "a"); // Abre arquivo "a" (abre um arquivo no modo de inclusão)
+    if (fp == NULL)                     // Verifica se o arquivo existe
     {
         printf("Erro ao abrir o arquivo"); // exibir mensagem de erro
         exit(1);                           // encerrar
     }
 
-    // Remove qualquer caractere de nova linha do nome e do cargo
+    // Remove o "\n" se ele existir 
     char *nome = funcionario->nome;
     char *cargo = funcionario->cargo;
     nome[strcspn(nome, "\n")] = '\0';
@@ -54,21 +55,22 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
 {
     char linha[100];      // char denominada linha de tamanho 100
     Funcionario auxiliar; // variavel auxilar
-                          // fgets é utilizado para fazer a leitura de uma linha e depois armazenar em uma string
-                          // sscanf é utilizado para a leitura de uma string
-    while (fgets(linha, sizeof(linha), fp) != NULL)
+                          
+                          
+    while (fgets(linha, sizeof(linha), fp) != NULL)// fgets é utilizado para fazer a leitura de uma linha e depois armazenar em uma string
     {
         char nome[100], cargo[50];
         long long int documento;
 
         // Use sscanf para ler nome e cargo com espaços e o documento com strtol
-        if (sscanf(linha, "%99[^\t]\t%49[^\t]\t%lld", nome, cargo, &documento) == 3)
+        if (sscanf(linha, "%99[^\t]\t%49[^\t]\t%lld", nome, cargo, &documento) == 3)//Apenas para verificar e aprovar como deve ser o formato da linha que vai ser lida no arquivo
         {
-            funcionario[*count_fun] = criarFuncionario(nome, cargo, documento);
+            funcionario[*count_fun] = criarFuncionario(nome, cargo, documento); // se aprovado um novo funcionário é criado e armazenado no array funcionario.
             (*count_fun)++;
         }
     }
 }
+
 // função para buscar dos funcionarios cadastrado pelo nome.
 Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *nome)
 {
@@ -87,7 +89,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
             tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // milisegundos
             printf("\nTempo de execucao da funcao buscaLinearnome: %.50f\n\n", tempo);
-            return funcionario[i]; // retorna a funcionario
+            return funcionario[i]; // retorna os dados do funcionario encontrado
         }
     }
 
@@ -99,7 +101,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
 
-// função para busca dos funcionarios cadastrado por numero de indentificação (pode ser ele identidade, cpf ou matricula)
+// função para busca dos funcionarios cadastrado por numero de identificação (pode ser ele identidade, cpf ou matricula)
 Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], long long int documento)
 {
     // inicia o tempo de execução da função buscaLineardocumento
@@ -129,7 +131,7 @@ Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], lon
 // Função para atualizar o arquivo arquivo "saida.txt" sempre que o programa e encerrado e inicializado novamente.
 void atualizarArquivo(Funcionario *funcionario[], int count_fun)
 {
-    FILE *fp = fopen("saida.txt", "w"); // Abre o arquivo para escrita, substituindo o conteúdo existente
+    FILE *fp = fopen("saida.txt", "w"); // Abre o arquivo para escrita, substituindo se necessario o conteúdo existente
 
     if (fp == NULL)
     {
@@ -148,5 +150,6 @@ void atualizarArquivo(Funcionario *funcionario[], int count_fun)
 // função libera funcionario vai liberar a memoria ocupada
 void libera_funcionario(Funcionario *funcionarios)
 {
+    
     free(funcionarios);
 }
