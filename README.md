@@ -47,7 +47,7 @@ Funcionario *buscaLinearnome ( int count_fun , Funcionario * funcionario[], char
 
     for (i = 0; i < count_fun; i++)// c2, n-1 vezes
     {
-        if (strcmp(funcionario[i]->nome, nome) == 0)// c3, n-1 vezes
+        if (strcasecmp(funcionario[i]->nome, nome) == 0)// c3, n-1 vezes
         {
             return funcionario[i];// c4, n-1 vezes
         }
