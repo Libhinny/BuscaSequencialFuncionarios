@@ -86,7 +86,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
             clock_t fim = clock();
             tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // milisegundos
-            printf("\nTempo de execucao da funcao buscaLinearnome : %.50f\n\n", tempo);
+            printf("\nTempo de execucao da funcao buscaLinearnome: %.50f\n\n", tempo);
             return funcionario[i]; // retorna a funcionario
         }
     }
@@ -95,7 +95,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
     clock_t fim = clock();
     tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
     tempo = tempo * 1000; // milisegundos
-    printf("\nTempo de execucao da funcao buscaLinearnome : %.50f\n\n", tempo);
+    printf("\nTempo de execucao da funcao buscaLinearnome: %.50f\n\n", tempo);
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
 
@@ -114,7 +114,7 @@ Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], lon
             clock_t fim = clock();
             tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
             tempo = tempo * 1000; // milisegundos
-            printf("\nTempo de execucao da funcao buscaLineardocumento : %.50f\n\n", tempo);
+            printf("\nTempo de execucao da funcao buscaLineardocumento: %.50f\n\n", tempo);
             return funcionario[i]; // Retorna a funcionario
         }
     }
@@ -122,7 +122,7 @@ Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], lon
     clock_t fim = clock();
     tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
     tempo = tempo * 1000; // milisegundos
-    printf("\nTempo de execucao da funcao buscaLineardocumento : %.50f\n\n", tempo);
+    printf("\nTempo de execucao da funcao buscaLineardocumento: %.50f\n\n", tempo);
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
 
