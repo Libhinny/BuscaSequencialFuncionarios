@@ -37,8 +37,15 @@ void funcionario_salva(Funcionario *funcionario)
         printf("Erro ao abrir o arquivo"); // exibir mensagem de erro
         exit(1);                           // encerrar
     }
+
+    // Remove qualquer caractere de nova linha do nome e do cargo
+    char *nome = funcionario->nome;
+    char *cargo = funcionario->cargo;
+    nome[strcspn(nome, "\n")] = '\0';
+    cargo[strcspn(cargo, "\n")] = '\0';
+
     // escreve os dados no arquivo conforme especificado pela string
-    fprintf(fp, " %s\t%s\t%lld\n", funcionario->nome, funcionario->cargo, funcionario->documento);
+    fprintf(fp, " %s\t%s\t%lld\n", nome, cargo, funcionario->documento);
     fclose(fp); // fechar arquivo
 }
 
@@ -49,12 +56,17 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
     Funcionario auxiliar; // variavel auxilar
                           // fgets é utilizado para fazer a leitura de uma linha e depois armazenar em uma string
                           // sscanf é utilizado para a leitura de uma string
-    while (fgets(linha, 100, fp) != NULL)
+    while (fgets(linha, sizeof(linha), fp) != NULL)
     {
-        sscanf(linha, "%s\t%s\t%lld", auxiliar.nome, auxiliar.cargo, &auxiliar.documento);
+        char nome[100], cargo[50];
+        long long int documento;
 
-        funcionario[*count_fun] = criarFuncionario(auxiliar.nome, auxiliar.cargo, auxiliar.documento);
-        (*count_fun)++;
+        // Use sscanf para ler nome e cargo com espaços e o documento com strtol
+        if (sscanf(linha, "%99[^\t]\t%49[^\t]\t%lld", nome, cargo, &documento) == 3)
+        {
+            funcionario[*count_fun] = criarFuncionario(nome, cargo, documento);
+            (*count_fun)++;
+        }
     }
 }
 // função para buscar dos funcionarios cadastrado pelo nome.
@@ -69,7 +81,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
     for (i = 0; i < count_fun; i++)
     {
         if (strcmp(funcionario[i]->nome, nome) == 0)
-        {   
+        {
             // Calcula o tempo de execução caso um funcionario seja encontrado
             clock_t fim = clock();
             tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
