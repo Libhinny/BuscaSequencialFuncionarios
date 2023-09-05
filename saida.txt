@@ -1,2 +1,2 @@
- Diego	gerente	18
- ricardo	caixa	22
+
+ Diego Nascimento de Oliveira	Programador	8874141335

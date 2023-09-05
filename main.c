@@ -4,7 +4,8 @@
 int main(void)
 {
 
-    int op, documento, count_fun = 0;
+    int op, count_fun = 0;
+    long long int documento; // Para armazenar um número maior de inteiros e os zeros a esquerda sajam mostrados na saida.
     int nomeValido = 0;
 
     char nome[100], cargo[50];
@@ -95,7 +96,7 @@ int main(void)
            do
             {
                 printf("Digite o número de um documento de identificação: \n");
-                if (scanf(" %d", &documento) == 1)
+                if (scanf(" %lld", &documento) == 1)
                 {
                     documentoValido = 1;
                 }
@@ -152,7 +153,7 @@ int main(void)
             {
                 printf("\n\tFuncionario encontrado \n");
                 printf("Nome: %s\n", func->nome);
-                printf("Documento: %d\n", func->documento);
+                printf("Documento: %lld\n", func->documento);
                 printf("Cargo: %s\n", func->cargo);
             }
             else
@@ -166,7 +167,7 @@ int main(void)
            do
             {
                 printf("Digite o número de um documento de identificação: \n");
-                if (scanf(" %d", &documento) == 1)
+                if (scanf(" %lld", &documento) == 1)
                 {
                     documentoValido = 1;
                 }
@@ -184,7 +185,7 @@ int main(void)
             {
                 printf("\n Funcionario encontrado! \n");
                 printf("Nome: %s\n", funci->nome);
-                printf("Documento: %d\n", funci->documento);
+                printf("Documento: %lld\n", funci->documento);
                 printf("Cargo: %s\n", funci->cargo);
             }
             else

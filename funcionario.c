@@ -6,12 +6,12 @@ typedef struct funcionario
 
     char nome[100];
     char cargo[50];
-    int documento;
+    long long int documento;
 
 } Funcionario;
 
 // Função para criar os funcionarios, em seguida serão alocados dinamicamente e estaram armazendo os dados na struct.
-Funcionario *criarFuncionario(char *nome, char *cargo, int documento)
+Funcionario *criarFuncionario(char *nome, char *cargo,  long long int documento)
 {
     Funcionario *funcionario = (Funcionario *)malloc(sizeof(Funcionario));
 
@@ -38,7 +38,7 @@ void funcionario_salva(Funcionario *funcionario)
         exit(1);                           // encerrar
     }
     // escreve os dados no arquivo conforme especificado pela string
-    fprintf(fp, " %s\t%s\t%d\n", funcionario->nome, funcionario->cargo, funcionario->documento);
+    fprintf(fp, " %s\t%s\t%lld\n", funcionario->nome, funcionario->cargo, funcionario->documento);
     fclose(fp); // fechar arquivo
 }
 
@@ -51,7 +51,7 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
                           // sscanf é utilizado para a leitura de uma string
     while (fgets(linha, 100, fp) != NULL)
     {
-        sscanf(linha, "%s\t%s\t%d", auxiliar.nome, auxiliar.cargo, &auxiliar.documento);
+        sscanf(linha, "%s\t%s\t%lld", auxiliar.nome, auxiliar.cargo, &auxiliar.documento);
 
         funcionario[*count_fun] = criarFuncionario(auxiliar.nome, auxiliar.cargo, auxiliar.documento);
         (*count_fun)++;
@@ -79,7 +79,7 @@ Funcionario *buscaLinearnome(int count_fun, Funcionario *funcionario[], char *no
     return NULL; // Retorna NULL se a alocação de memória falhar
 }
 // função para busca dos funcionarios cadastrado por numero de indentificação (pode ser ele identidade, cpf ou matricula)
-Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[], int documento)
+Funcionario *buscaLineardocumento(int count_fun, Funcionario *funcionario[],   long long int documento)
 {
     // função para calcular o tempo de execução da função buscaLinearnome
     clock_t inicio = clock();
