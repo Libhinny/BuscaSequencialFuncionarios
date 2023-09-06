@@ -57,7 +57,7 @@ void lerarquivo(FILE *fp, Funcionario *funcionario[], int *count_fun)
     Funcionario auxiliar; // variavel auxilar
                           
                           
-    while (fgets(linha, sizeof(linha), fp) != NULL)// verifica se a linha esta vazia ou não 
+    while (fgets(linha, sizeof(linha), fp) != EOF)// verifica se a linha esta vazia ou não 
     {
         char nome[100], cargo[50];
         long long int documento;
